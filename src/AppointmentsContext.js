@@ -10,18 +10,21 @@ export function useAppointments() {
 export const AppointmentsProvider = ({ children }) => {
   const [appointments, setAppointments] = useState([]);
 
+  // Define backendURL using the environment variable
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
+
   const fetchAppointments = useCallback(async () => {
-    const response = await axios.get('http://127.0.0.1:5000/appointments');
+    const response = await axios.get(`${backendURL}/appointments`);
     setAppointments(response.data.reverse()); // Reverse to display new appointments at the top
   }, []);
 
   const addAppointment = async (appointmentData) => {
-    const response = await axios.post('http://127.0.0.1:5000/appointments', appointmentData);
+    const response = await axios.post(`${backendURL}/appointments`, appointmentData);
     fetchAppointments(); // Re-fetch appointments to reflect the new one
   };
 
   const deleteAppointment = async (appointmentId) => {
-    await axios.delete(`http://127.0.0.1:5000/appointments/${appointmentId}`);
+    await axios.delete(`${backendURL}/appointments/${appointmentId}`);
     fetchAppointments(); // Re-fetch appointments to reflect the deletion
   };
 
