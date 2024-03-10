@@ -10,6 +10,9 @@ export function useAppointments() {
 export const AppointmentsProvider = ({ children }) => {
   const [appointments, setAppointments] = useState([]);
 
+  // Log the environment variable to check its value at runtime
+  console.log(process.env.REACT_APP_BACKEND_URL);
+
   // Define backendURL using the environment variable
   const backendURL = process.env.REACT_APP_BACKEND_URL;
 
