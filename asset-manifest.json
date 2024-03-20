@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/React_Diagnostrum/static/css/main.76e33350.css",
-    "main.js": "/React_Diagnostrum/static/js/main.3e73625a.js",
+    "main.js": "/React_Diagnostrum/static/js/main.64aee2a2.js",
     "static/js/453.ad6eb26e.chunk.js": "/React_Diagnostrum/static/js/453.ad6eb26e.chunk.js",
     "index.html": "/React_Diagnostrum/index.html",
     "main.76e33350.css.map": "/React_Diagnostrum/static/css/main.76e33350.css.map",
-    "main.3e73625a.js.map": "/React_Diagnostrum/static/js/main.3e73625a.js.map",
+    "main.64aee2a2.js.map": "/React_Diagnostrum/static/js/main.64aee2a2.js.map",
     "453.ad6eb26e.chunk.js.map": "/React_Diagnostrum/static/js/453.ad6eb26e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76e33350.css",
-    "static/js/main.3e73625a.js"
+    "static/js/main.64aee2a2.js"
   ]
 }
