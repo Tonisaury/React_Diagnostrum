@@ -14,15 +14,26 @@ export const AppointmentsProvider = ({ children }) => {
   const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   const fetchAppointments = useCallback(async () => {
-    // Directly use axios.get without assigning to `response` if not using `response` elsewhere
-    await axios.get(`${backendURL}/appointments`)
-      .then(response => setAppointments(response.data.reverse())); // Reverse to display new appointments at the top
-  }, [backendURL]); // Include backendURL in the dependency array to adhere to the rule of hooks
+    await axios.get(`${backendURL}/appointments/latest`)
+      .then(response => {
+        // Check if the response contains a message field, indicating no appointments
+        if(response.data.message) {
+          // Set appointments to an empty array or any structure you prefer to indicate no appointments
+          setAppointments([]);
+        } else {
+          // If there are appointments, reverse them to display new ones at the top
+          setAppointments(response.data.reverse());
+        }
+      });
+  }, [backendURL]);
+  
 
   const addAppointment = async (appointmentData) => {
     // Similar approach as `fetchAppointments` if `response` isn't used elsewhere
     await axios.post(`${backendURL}/appointments`, appointmentData)
-      .then(() => fetchAppointments()); // No need to assign to `response` if not using it
+    .then(() => fetchAppointments())
+    .catch(error => console.error("Error adding appointment:", error));
+   // No need to assign to `response` if not using it
   };
 
   const deleteAppointment = async (appointmentId) => {
