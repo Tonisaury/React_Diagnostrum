@@ -15,7 +15,7 @@ function CreateAppointment() {
             patient_name: patientName,
             observations: observations,
             test_type: testType,
-            urgency: urgency,
+            urgency: urgency || '0', // Set to '0' if urgency is an empty string
         };
         await addAppointment(appointmentData); // Now awaiting the async operation
         // Reset form fields here if needed
@@ -43,8 +43,9 @@ function CreateAppointment() {
               className="form-field"
               value={testType}
               onChange={(e) => setTestType(e.target.value)}
+              required
             >
-              <option value="">Selecciona tipo de prueba</option>
+              <option value="" disabled>Selecciona tipo de prueba</option>
               <option value="COL">COL</option>
               <option value="RMN MENIT">RMN MENIT</option>
               <option value="RMN GENOLL">RMN GENOLL</option>
@@ -121,12 +122,14 @@ function CreateAppointment() {
               value={urgency}
               onChange={(e) => setUrgency(e.target.value)}
             >
-              <option value="">Grado de urgencia</option>
+              <option value="" disabled>Grado de urgencia</option>
               {[...Array(5).keys()].map((num) => (
                 <option key={num} value={num}>{num}</option>
               ))}
             </select>
-            <button type="submit" className="form-button">Programar cita</button>
+            {testType && (
+              <button type="submit" className="form-button">Programar cita</button>
+            )}
           </form>
         </div>
     );
