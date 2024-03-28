@@ -41,9 +41,24 @@ export const AppointmentsProvider = ({ children }) => {
       .then(() => fetchAppointments()); // Re-fetch appointments to reflect the deletion
   };
 
+  const updateSpreadsheet = useCallback(async () => {
+    await axios.post(`${backendURL}/update-spreadsheet`)
+      .then(response => {
+        alert(response.data.message); // Show success message
+      })
+      .catch(error => {
+        console.error("Error updating spreadsheet:", error);
+        alert("Failed to update the spreadsheet"); // Show error message
+      });
+  }, [backendURL]);
+  
+
   return (
-    <AppointmentsContext.Provider value={{ appointments, addAppointment, deleteAppointment, fetchAppointments }}>
-      {children}
-    </AppointmentsContext.Provider>
+  <AppointmentsContext.Provider value={{ appointments, addAppointment, deleteAppointment, fetchAppointments, updateSpreadsheet }}>
+    {children}
+  </AppointmentsContext.Provider>
+  
   );
+
+  
 };

@@ -16,21 +16,24 @@ function AppointmentsList() {
         <ul>
           {appointments.map(appointment => (
             <li key={appointment.id} className="list-item">
-              {appointment.patient_name} - {appointment.test_type}
-              <br />
-              {appointment.hospital} - {appointment.room} <br />
-              {appointment.appointment_date} <br />
+              <div className="appointment-info">
+                {appointment.patient_name} - {appointment.test_type}
+                <br />
+                {appointment.hospital} - {appointment.room} <br />
+                {appointment.appointment_date} <br />
+                <span className="created-at-text">Created at: {appointment.appointment_created_at}</span>
+              </div>
               <button onClick={() => deleteAppointment(appointment.id)} className="delete-button">Anular</button>
             </li>
           ))}
         </ul>
       ) : (
-        // Display this message when there are no appointments
         <div>No hay citas programadas</div>
       )}
     </div>
   );
 }
+
 
 
 export default AppointmentsList;

@@ -27,3 +27,8 @@
   .delete-button:hover {
     opacity: 0.8;
   }
+
+  .created-at-text {
+    font-style: italic;
+  }
+  
